@@ -1,0 +1,72 @@
+import os
+import sys
+import math
+from snakemake.utils import min_version
+
+min_version("6.0")
+
+SDIR = os.path.realpath(os.path.dirname(srcdir("Snakefile")))
+shell.prefix(f"set -eo pipefail; ")
+
+
+configfile: "config/config.yaml"
+
+
+rule _RepeatMasker:
+    input:
+        fasta=config["fasta"],
+    output:
+        out=config["RMout"],
+    resources:
+        mem=config.get("mem", 8),
+    shadow:
+        "shallow"
+    threads: config.get("threads", 8)
+    conda:
+        "envs/env.yml"
+    log:
+        "rm.out.log",
+    params:
+        opts=config.get("RepeatMaskerOptions", "-s -xsamll -e ncbi"),
+        species=config.get("RepeatMaskerSpecies", "human"),
+    shell:
+        """
+        RepeatMasker \
+            -s \
+            -xsmall \
+            -e ncbi \
+            -species {params.species} \
+            -dir $(dirname {input.fasta}) \
+            -pa {threads} \
+            {input.fasta}  2> {log}
+        """
+
+
+rule _RepeatMasker_bed:
+    input:
+        out=config["RMout"],
+    output:
+        out=config["RMbed"],
+    resources:
+        mem=config.get("mem", 8),
+    shadow:
+        "shallow"
+    threads: config.get("threads", 8)
+    conda:
+        "envs/env.yml"
+    log:
+        "rm.out.log",
+    params:
+        opts=config.get("RepeatMaskerOptions", "-s -xsamll -e ncbi"),
+        species=config.get("RepeatMaskerSpecies", "human"),
+    shell:
+        """
+        RepeatMasker \
+            -s \
+            -xsmall \
+            -e ncbi \
+            -species {params.species} \
+            -dir $(dirname {input.fasta}) \
+            -pa {threads} \
+            {input.fasta}  2> {log}
+        """
