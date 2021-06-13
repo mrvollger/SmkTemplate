@@ -24,4 +24,4 @@ jobs:
       with:
         directory: .
         snakefile: workflow/Snakefile
-        args: "--use-conda --cores 1"
+        args: "--use-conda --cores 1 --configfile .test/config.yaml"
