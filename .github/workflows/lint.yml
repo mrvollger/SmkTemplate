@@ -24,4 +24,4 @@ jobs:
       with:
         directory: .
         snakefile: workflow/Snakefile
-        args: "--lint"
+        args: "--lint --cores 1 --configfile .test/config.yaml"
