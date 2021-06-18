@@ -16,6 +16,7 @@ if __name__ == "__main__":
     NIDS = len(args.outputs)
 
     fasta = pysam.FastaFile(args.infile)
+
     outs = [open(f, "w+") for f in args.outputs]
     outidx = 0
     for name in fasta.references:
@@ -27,4 +28,3 @@ if __name__ == "__main__":
 
     for out in outs:
         out.close()
-
