@@ -38,7 +38,7 @@ footer img {
 
 ---
 
-# **What** is a publication quality workflow
+# **What** constitutes a publication quality workflow
 
 ```bash
 ├── README.md # Must contain keywords snakemake and workflow
@@ -103,3 +103,17 @@ footer img {
 - These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake** developers
 
 ---
+
+# Making your code beautiful and ready to share
+
+#### Check that you follow Snakemake coding recommendations with
+
+`snakemake --lint `
+
+#### Format your snakemake consistently and automatically
+
+`snakefmt .`
+
+#### Format your python code consistently and automatically
+
+`black .`
