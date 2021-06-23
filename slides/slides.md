@@ -5,13 +5,14 @@ auto-scaling: true
 size: 4:3
 paginate: true
 footer: "
-[![Twitter URL](https://img.shields.io/twitter/follow/mrvollger?color=blue&label=twitter&style=for-the-badge)](https://twitter.com/mrvollger)
-[![Github badge](https://img.shields.io/github/stars/mrvollger?label=github&style=for-the-badge)](https://github.com/mrvollger)
-[![Website](https://img.shields.io/website?down_color=gray&style=for-the-badge&up_color=blue&url=https%3A%2F%2Fmrvollger.github.io%2F)](https://mrvollger.github.io)
+![Licence](https://img.shields.io/github/license/mrvollger/SmkTemplate?color=purple&label=MRV&style=for-the-badge)
+[![Twitter URL](https://img.shields.io/twitter/follow/mrvollger?color=1DA1F2&label=twitter&style=for-the-badge)](https://twitter.com/mrvollger)
+[![Github badge](https://img.shields.io/github/stars/mrvollger?label=github&style=for-the-badge&color=black)](https://github.com/mrvollger)
+[![Website](https://img.shields.io/website?down_color=gray&style=for-the-badge&up_color=green&url=https%3A%2F%2Fmrvollger.github.io%2F)](https://mrvollger.github.io)
 "
 ---
 
-<style >section { font-size: 22px; }</style>
+<style>section { font-size: 22px; }</style>
 <style>
 footer {
     height: 10px;
@@ -92,15 +93,15 @@ footer img {
 
 - Provably working Snakemake that is scalable, portable, and readable
 - A website for your tool
-  - [<user>.github.io/<workflow>](https://mrvollger.github.io/SmkTemplate/)
+  - [ \<user\>.github.io/\<workflow>](https://mrvollger.github.io/SmkTemplate/)
 - Automated documentation and publication of your workflow on the Snakemake website
-  - [snakemake.github.io/snakemake-workflow-catalog?usage=<user>/<workflow>](https://snakemake.github.io/snakemake-workflow-catalog?usage=mrvollger/SmkTemplate)
+  - [snakemake.github.io/snakemake-workflow-catalog?usage=\<user>/\<workflow>](https://snakemake.github.io/snakemake-workflow-catalog?usage=mrvollger/SmkTemplate)
 - Those pretty badges!
   - [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/CI/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
 
 #### **Why** should I follow your advice?
 
-- These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake** developers
+- These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
 
 ---
 
@@ -117,3 +118,52 @@ footer img {
 #### Format your python code consistently and automatically
 
 `black .`
+
+---
+
+# What should and should not be in your rules
+
+#### Should have
+
+- Input and output
+- Log file
+- Environment declaration if using `shell` or `script`
+- `resources` and `threads` if appropriate.
+
+#### Should not have
+
+- Any reference to a system specific resource e.g. `sge`,`grid`,`qsub`, `module load`, ect.
+- Global python references e.g. `{SNAKEMAKE_DIR}`, add an option to the `params` declaration instead, or use wildcard references e.g. `{wildcards.sample}`
+
+#### How do I check that my rules are formated?
+
+`snakemake --lint`
+
+---
+
+# Example rule
+
+```python
+rule RepeatMasker:
+    input:
+        fasta="a.fasta",
+    output:
+        out="a.out",
+    resources:
+        mem=1048, # in MB by default
+    threads: 1
+    conda:
+        "envs/env.yml"
+    log:
+        "rm.out.log",
+    params:
+        species=config.get("RepeatMaskerSpecies", "human"),
+    shell:
+        """
+        RepeatMasker -s -xsmall -e ncbi \
+            -species {params.species} \
+            -dir $(dirname {input.fasta}) \
+            -pa {threads} \
+            {input.fasta}  2> {log}
+        """
+```
