@@ -1,6 +1,7 @@
 ---
 marp: true
 theme: defualt
+auto-scaling: true   
 size: 4:3
 paginate: true
 footer: "
@@ -10,6 +11,7 @@ footer: "
 "
 ---
 
+<style >section { font-size: 22px; }</style>
 <style>
 footer {
     height: 10px;
@@ -20,29 +22,23 @@ footer img {
  }
 </style>
 
-# Creating publication quality workflows with Snakemake and Github
+# Creating publication quality workflows with **Snakemake** and **Github**
+
+#### Mitchell .R Vollger
 
 ---
 
-# Publication quality workflows
+# **Who** is this for?
 
-- who
-- what
-  - documenting things
-- why
-- how
+#### Consider using this guide if you plan to do any of the following with a workflow
 
----
-
-# Continuous integration and Github actions
-
-```
-.github/workflows/*.yml
-```
+- **Reuse** the workflow in the future
+- **Share** the workflow with anyone
+- **Publish** the workflow
 
 ---
 
-# Snakemake layout
+# **What** is a publication quality workflow
 
 ```bash
 ├── README.md # Must contain keywords snakemake and workflow
@@ -71,7 +67,39 @@ footer img {
 │   ├── lint.yml
 │   ├── black.yml
 ├── .gitignore
+├── .snakemake-workflow-catalog.yml # Specify required flags and options
 └── results # results of the workflow
 ```
+
+---
+
+# **How** do I do this, it seems like a lot of work...
+
+#### Don't worry I made it easy by making a template that can serve as the starting point for any Snakemake workflow
+
+- [**https://github.com/mrvollger/SmkTemplate**](https://github.com/mrvollger/SmkTemplate)
+
+#### If you are not experienced with **Snakemake** don't worry, it has excellent documentation and tutorials
+
+- [**Docs**](https://snakemake.readthedocs.io/en/stable/)
+- [**Tutorial**](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html)
+
+---
+
+# **Why** follow this guide
+
+#### If you follow this guide you will get the following things with relatively little effort
+
+- Provably working Snakemake that is scalable, portable, and readable
+- A website for your tool
+  - [<user>.github.io/<workflow>](https://mrvollger.github.io/SmkTemplate/)
+- Automated documentation and publication of your workflow on the Snakemake website
+  - [snakemake.github.io/snakemake-workflow-catalog?usage=<user>/<workflow>](https://snakemake.github.io/snakemake-workflow-catalog?usage=mrvollger/SmkTemplate)
+- Those pretty badges!
+  - [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/CI/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
+
+#### **Why** should I follow your advice?
+
+- These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake** developers
 
 ---
