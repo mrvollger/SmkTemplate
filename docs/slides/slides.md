@@ -121,6 +121,12 @@ footer: "
 
 - These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
 
+# Making a **documented** workflow
+
+# Making a **portable** workflow
+
+# Making a **tested** workflow
+
 # Making a **readable** workflow
 
 ## Making your code beautiful and ready to share
