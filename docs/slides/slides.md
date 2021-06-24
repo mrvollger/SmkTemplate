@@ -23,7 +23,7 @@ footer img {
  }
 </style>
 
-# Creating publication quality workflows with **Snakemake** and **Github**
+# Creating publication quality workflows with **Snakemake** and **GitHub**
 
 #### Mitchell .R Vollger
 
@@ -31,11 +31,13 @@ footer img {
 
 # **Who** is this for?
 
-#### Consider using this guide if you plan to do any of the following with a workflow
+#### This guide is for people who already know the basics of **Snakemake** and **GitHub** / `git` and want to increase the usability of their work.
 
-- **Reuse** the workflow in the future
-- **Share** the workflow with anyone
-- **Publish** the workflow
+#### You should seriously consider using this guide if you plan to:
+
+- **Reuse** a workflow in the future
+- **Share** a workflow with anyone
+- **Publish** a workflow
 
 ---
 
@@ -91,7 +93,7 @@ footer img {
 
 #### If you follow this guide you will get the following things with relatively little effort
 
-- Provably working Snakemake that is scalable, portable, and readable
+- A provably working Snakemake that is scalable, portable, and readable
 - A website for your tool
   - [ \<user\>.github.io/\<workflow>](https://mrvollger.github.io/SmkTemplate/)
 - Automated documentation and publication of your workflow on the Snakemake website
@@ -99,7 +101,7 @@ footer img {
 - Those pretty badges!
   - [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/CI/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
 
-#### **Why** should I follow your advice?
+#### **Why** follow this guide/advice in particular?
 
 - These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
 
