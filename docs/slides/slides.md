@@ -25,13 +25,13 @@ footer img {
 
 # Creating publication quality workflows with **Snakemake** and **GitHub**
 
-#### Mitchell .R Vollger
+#### Mitchell R. Vollger
 
 ---
 
 # **Who** is this for?
 
-#### This guide is for people who already know the basics of **Snakemake** and **GitHub** / `git` and want to increase the usability of their work.
+#### This guide is for people who already know the basics of **Snakemake** and **GitHub** and want to increase the usability of their work.
 
 #### You should seriously consider using this guide if you plan to:
 
@@ -42,6 +42,19 @@ footer img {
 ---
 
 # **What** constitutes a publication quality workflow
+
+- Documented
+  - The workflow is described as well as all configuration options
+- Portable
+  - Your workflow can be downloaded, installed, and run successfully on a test set in less than ~10 minutes
+- Tested
+  - The workflow (and all changes to the workflow) are tested against a small data set continuously
+- Readable
+  - The code and directory layout are constructed in a readable and expected fashion
+
+---
+
+# **What** a publication quality workflow looks like
 
 ```bash
 ├── README.md # Must contain keywords snakemake and workflow
@@ -89,19 +102,18 @@ footer img {
 
 ---
 
-# **Why** follow this guide
-
-#### If you follow this guide you will get the following things with relatively little effort
+## Reasons **why** you should aim to make quality workflows
 
 - A provably working Snakemake that is scalable, portable, and readable
 - A website for your tool
   - [ \<user\>.github.io/\<workflow>](https://mrvollger.github.io/SmkTemplate/)
 - Automated documentation and publication of your workflow on the Snakemake website
   - [snakemake.github.io/snakemake-workflow-catalog?usage=\<user>/\<workflow>](https://snakemake.github.io/snakemake-workflow-catalog?usage=mrvollger/SmkTemplate)
-- Those pretty badges!
+- You will be able to submit to journals like [JOSS](https://joss.readthedocs.io/en/latest/submitting.html) in about an hour
+- You get these pretty badges!
   - [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/CI/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions) [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
 
-#### **Why** follow this guide/advice in particular?
+## **Why** follow this guide/advice in particular?
 
 - These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
 
