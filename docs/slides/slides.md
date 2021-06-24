@@ -123,6 +123,19 @@ footer: "
 
 # Making a **documented** workflow
 
+## Relevant files in the template
+
+```bash
+├── README.md # Must contain keywords snakemake and workflow
+├── config
+│   ├── README.md # a complete description of configuration options
+│   ├── config.yaml
+│   └── manifest.tsv
+├── .test # a small test case that runs all rules in your workflow
+│   ├── config.yaml
+└── .snakemake-workflow-catalog.yml # Specify required flags and options
+```
+
 # Making a **portable** workflow
 
 # Making a **tested** workflow
