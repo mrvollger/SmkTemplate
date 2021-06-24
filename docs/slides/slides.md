@@ -12,24 +12,31 @@ footer: "
 "
 ---
 
-<style>section { font-size: 22px; }</style>
+<!-- headingDivider: 2 -->
 <style>
-footer {
-    height: 10px;
-}
-footer img {
+  footer {
+      height: 10px;
+  }
+  footer img {
     height: 20px;
     float: center;
- }
+  }
+  section {
+     font-size: 22px; 
+  }
+  section.small {
+    font-size: 18px; 
+  }
+  b, strong {
+     color: #48c;
+  }
 </style>
 
 # Creating publication quality workflows with **Snakemake** and **GitHub**
 
-#### Mitchell R. Vollger
+#### _Mitchell R. Vollger_
 
----
-
-# **Who** is this for?
+## **Who** is this for?
 
 #### This guide is for people who already know the basics of **Snakemake** and **GitHub** and want to increase the usability of their work.
 
@@ -39,22 +46,20 @@ footer img {
 - **Share** a workflow with anyone
 - **Publish** a workflow
 
----
+## **What** constitutes a publication quality workflow
 
-# **What** constitutes a publication quality workflow
-
-- Documented
+- **Documented**
   - The workflow is described as well as all configuration options
-- Portable
+- **Portable**
   - Your workflow can be downloaded, installed, and run successfully on a test set in less than ~10 minutes
-- Tested
+- **Tested**
   - The workflow (and all changes to the workflow) are tested against a small data set continuously
-- Readable
+- **Readable**
   - The code and directory layout are constructed in a readable and expected fashion
 
----
-
 # **What** a publication quality workflow looks like
+
+<!-- _class: section small-->
 
 ```bash
 ├── README.md # Must contain keywords snakemake and workflow
@@ -87,20 +92,16 @@ footer img {
 └── results # results of the workflow
 ```
 
----
-
-# **How** do I do this, it seems like a lot of work...
+## **How** do I do this, it seems like a lot of work...
 
 #### Don't worry I made it easy by making a template that can serve as the starting point for any Snakemake workflow
 
-- [**https://github.com/mrvollger/SmkTemplate**](https://github.com/mrvollger/SmkTemplate)
+- [github.com/mrvollger/SmkTemplate](https://github.com/mrvollger/SmkTemplate)
 
 #### If you are not experienced with **Snakemake** don't worry, it has excellent documentation and tutorials
 
-- [**Docs**](https://snakemake.readthedocs.io/en/stable/)
-- [**Tutorial**](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html)
-
----
+- [Docs](https://snakemake.readthedocs.io/en/stable/)
+- [Tutorial](https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html)
 
 ## Reasons **why** you should aim to make quality workflows
 
@@ -117,9 +118,9 @@ footer img {
 
 - These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
 
----
+# Making a **readable** workflow
 
-# Making your code beautiful and ready to share
+## Making your code beautiful and ready to share
 
 #### Check that you follow Snakemake coding recommendations with
 
@@ -133,9 +134,7 @@ footer img {
 
 `black .`
 
----
-
-# What should and should not be in your rules
+## What should and should not be in your rules
 
 #### Should have
 
@@ -149,13 +148,7 @@ footer img {
 - Any reference to a system specific resource e.g. `sge`,`grid`,`qsub`, `module load`, ect.
 - Global python references e.g. `{SNAKEMAKE_DIR}`, add an option to the `params` declaration instead, or use wildcard references e.g. `{wildcards.sample}`
 
-#### How do I check that my rules are formated?
-
-`snakemake --lint`
-
----
-
-# Example rule
+## Example rule
 
 ```python
 rule RepeatMasker:
