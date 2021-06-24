@@ -22,13 +22,16 @@ footer: "
     float: center;
   }
   section {
-     font-size: 22px; 
+     font-size: 24px; 
   }
   section.small {
     font-size: 18px; 
   }
   b, strong {
      color: #48c;
+  }
+  h1 {
+    font-size: 46px;
   }
 </style>
 
@@ -57,7 +60,7 @@ footer: "
 - **Readable**
   - The code and directory layout are constructed in a readable and expected fashion
 
-# **What** a publication quality workflow looks like
+## **What** a publication quality workflow looks like
 
 <!-- _class: section small-->
 
