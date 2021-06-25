@@ -22,7 +22,7 @@ footer: "
     float: center;
   }
   section {
-     font-size: 24px; 
+     font-size: 20px; 
   }
   section.small {
     font-size: 18px; 
@@ -32,6 +32,17 @@ footer: "
   }
   h1 {
     font-size: 46px;
+  }
+  h2 {
+     font-size: 32px; 
+    /*text-decoration: underline;*/
+  }
+  h2::before {
+    content:"";
+    position: absolute;
+    border-bottom: 2.8px solid #48c; /*use this to adjust underlin color and size*/
+    width:83.6%;  /*use this to adjust underline width*/
+    height:1.5em; /*use this to adjust underline position*/
   }
 </style>
 
@@ -141,7 +152,7 @@ footer: "
 
 # Making a **readable** workflow
 
-## **Readable**: making your code beautiful and ready to share
+## **Readable**: making your code ready to share
 
 #### Check that you follow **Snakemake** coding recommendations with
 
@@ -213,7 +224,9 @@ rule RepeatMasker:
 - `workflow/envs/env.yml`: A yaml file that contains **conda** dependencies
 - `.snakemake-workflow-catalog.yml`: Adds a requirement to use the `--use-conda` flag.
 
-## **Portable**: a conda environment description (`env.yml`)
+## **Portable**: a conda environment description
+
+`workflow/envs/env.yml`
 
 ```yaml
 channels:
@@ -239,7 +252,9 @@ rule example:
           "..."
 ```
 
-## **Portable**: required flags (`.snakemake-workflow-catalog.yml`)
+## **Portable**: making required flags
+
+`.snakemake-workflow-catalog.yml`
 
 ```yaml
 usage:
@@ -270,7 +285,7 @@ This file tells your users that they must use `--use-conda` in order to run your
   - This is totally free for open source software!
 - The `.test/` directory contains all data and configuration info needed to run a test of your code, and **GitHub** will run this test when you push changes
 
-## **Testing**: setting up continuous integration (`main.yml`)
+## **Testing**: setting up continuous integration
 
 Enter the following into `.github/workflows/main.yaml`
 
@@ -313,3 +328,9 @@ jobs:
   [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
 - **black** checked your python code and it is formatted correctly!
   [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
+
+# That is all!
+
+### Try out the template!
+
+[**https://github.com/mrvollger/SmkTemplate/**](https://github.com/mrvollger/SmkTemplate/)
