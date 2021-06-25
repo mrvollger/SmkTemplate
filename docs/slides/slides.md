@@ -103,6 +103,7 @@ footer: "
 │   └── black.yml
 ├── .gitignore
 ├── .snakemake-workflow-catalog.yml # Specify required flags and options
+├── _config.yml # A file that tells github to make a website
 └── results # results of the workflow
 ```
 
@@ -142,13 +143,25 @@ footer: "
 │   ├── README.md # a complete description of configuration options
 │   ├── config.yaml
 │   └── manifest.tsv
+├── _config.yml # A file that tells github to make a website
 └── .snakemake-workflow-catalog.yml # Specify required flags and options
 ```
 
 - `README.md`: A standard description of your tool
 - `config/config.yaml`: A yaml file that has all **options** and **inputs** for your workflow
 - `config/README.md`: A **description** all options and inputs for your workflow
+- `_config.yml`: This file tells **GitHub** what theme to use when making your website
 - `.snakemake-workflow-catalog.yml`:
+
+## **Documenting**: sharing documentation
+
+### Website that displays your README:
+
+[https://\<USER>.github.io/\<REPO>/](https://mrvollger.github.io/SmkTemplate/)
+
+### Usage documentation on the **Snakemake** website:
+
+[https://snakemake.github.io/snakemake-workflow-catalog?usage=\<USER>/\<REPO>](https://snakemake.github.io/snakemake-workflow-catalog?usage=mrvollger/SmkTemplate)
 
 # Making a **readable** workflow
 
@@ -252,7 +265,7 @@ rule example:
           "..."
 ```
 
-## **Portable**: making required flags
+## **Portable**: adding required flags
 
 `.snakemake-workflow-catalog.yml`
 
@@ -264,7 +277,7 @@ usage:
     conda: true
 ```
 
-This file tells your users that they must use `--use-conda` in order to run your workflow. This will handle all dependencies.
+This file tells your users that they must use `--use-conda` in order to run your workflow. This will allow `conda` to handle all dependencies.
 
 # Making a **tested** workflow
 

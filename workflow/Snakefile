@@ -9,6 +9,9 @@ SDIR = os.path.realpath(os.path.dirname(srcdir("Snakefile")))
 shell.prefix(f"set -eo pipefail;")
 
 
+report: "report/workflow.rst"
+
+
 configfile: "config/config.yaml"
 
 
