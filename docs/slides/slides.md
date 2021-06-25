@@ -71,7 +71,7 @@ footer: "
 │   ├── rules # snakemake files (must have .smk suffix)
 │   │   ├── module.smk
 │   ├── envs # conda yaml(s)
-│   │   ├── env.yaml
+│   │   ├── env.yml
 │   │   └── R.yaml
 │   ├── scripts # scripts used by the workflow
 │   │   ├── script.py
@@ -89,7 +89,7 @@ footer: "
 ├── .github/workflows # yaml(s) for github actions (Continuous integration)
 │   ├── main.yml
 │   ├── lint.yml
-│   ├── black.yml
+│   └── black.yml
 ├── .gitignore
 ├── .snakemake-workflow-catalog.yml # Specify required flags and options
 └── results # results of the workflow
@@ -123,7 +123,7 @@ footer: "
 
 # Making a **documented** workflow
 
-## Relevant files in the template
+## **Documenting**: required files
 
 ```bash
 ├── README.md # Must contain keywords snakemake and workflow
@@ -131,32 +131,31 @@ footer: "
 │   ├── README.md # a complete description of configuration options
 │   ├── config.yaml
 │   └── manifest.tsv
-├── .test # a small test case that runs all rules in your workflow
-│   ├── config.yaml
 └── .snakemake-workflow-catalog.yml # Specify required flags and options
 ```
 
-# Making a **portable** workflow
-
-# Making a **tested** workflow
+- `README.md`: A standard description of your tool
+- `config/config.yaml`: A yaml file that has all **options** and **inputs** for your workflow
+- `config/README.md`: A **description** all options and inputs for your workflow
+- `.snakemake-workflow-catalog.yml`:
 
 # Making a **readable** workflow
 
-## Making your code beautiful and ready to share
+## **Readable**: making your code beautiful and ready to share
 
-#### Check that you follow Snakemake coding recommendations with
+#### Check that you follow **Snakemake** coding recommendations with
 
 `snakemake --lint `
 
-#### Format your snakemake consistently and automatically
+#### Format your **Snakefile** consistently and automatically
 
 `snakefmt .`
 
-#### Format your python code consistently and automatically
+#### Format your **python** code consistently and automatically
 
 `black .`
 
-## What should and should not be in your rules
+## **Readable**: what should and should not be in your **rules**
 
 #### Should have
 
@@ -168,9 +167,10 @@ footer: "
 #### Should not have
 
 - Any reference to a system specific resource e.g. `sge`,`grid`,`qsub`, `module load`, ect.
-- Global python references e.g. `{SNAKEMAKE_DIR}`, add an option to the `params` declaration instead, or use wildcard references e.g. `{wildcards.sample}`
+- Global python references e.g. `{SNAKEMAKE_DIR}`.
+  - Instead add an option to `params` or use wildcard references e.g. `{wildcards.sample}`
 
-## Example rule
+## **Readable**: example **rule**
 
 ```python
 rule RepeatMasker:
@@ -196,3 +196,120 @@ rule RepeatMasker:
             {input.fasta}  2> {log}
         """
 ```
+
+# Making a **portable** workflow
+
+## **Portable**: required files
+
+```bash
+├── LICENSE.md # I use MIT
+├── workflow
+│   └── envs # conda yaml(s)
+│       └── env.yml
+└── .snakemake-workflow-catalog.yml # Specify required flags and options
+```
+
+- `LICENSE.md `: However you want to license your tool
+- `workflow/envs/env.yml`: A yaml file that contains **conda** dependencies
+- `.snakemake-workflow-catalog.yml`: Adds a requirement to use the `--use-conda` flag.
+
+## **Portable**: a conda environment description (`env.yml`)
+
+```yaml
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - minimap2
+  - samtools
+  - numpy
+  - pandas
+```
+
+Every `rule` then specifies the `conda` environment it uses with the `conda:` declaration. Reference multiple environments so you can keep each one simple.
+
+```python
+rule example:
+    input:
+          ...
+    conda:
+      "envs/python.yml"
+    shell:
+          "..."
+```
+
+## **Portable**: required flags (`.snakemake-workflow-catalog.yml`)
+
+```yaml
+usage:
+  # definition of software deployment method:
+  # at least conda, singularity, or both
+  software-stack-deployment:
+    conda: true
+```
+
+This file tells your users that they must use `--use-conda` in order to run your workflow. This will handle all dependencies.
+
+# Making a **tested** workflow
+
+## **Testing**: required files
+
+```bash
+├── .github/workflows # yaml(s) for github actions (Continuous integration)
+│   ├── main.yml
+│   ├── lint.yml
+│   └── black.yml
+├── .test # a small test case that runs all rules in your workflow
+│   ├── config.yaml
+│   └── <test data file>
+```
+
+- The `<>.yml`s under `.github/workflow` specify actions **GitHub** should take every time a change is made to your repo
+  - Basically **GitHub** will test your workflow on AWS or equivalent.
+  - This is totally free for open source software!
+- The `.test/` directory contains all data and configuration info needed to run a test of your code, and **GitHub** will run this test when you push changes
+
+## **Testing**: setting up continuous integration (`main.yml`)
+
+Enter the following into `.github/workflows/main.yaml`
+
+```yaml
+name: CI
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkout submodules
+        uses: textbook/git-checkout-submodule-action@2.0.0
+      - name: Test workflow
+        uses: snakemake/snakemake-github-action@v1.18.0
+        with:
+          directory: .
+          snakefile: workflow/Snakefile
+          args: "--use-conda --cores 1 --configfile .test/config.yaml"
+```
+
+## **Testing**: pretty badges in your `README.md`!!!
+
+```markdown
+[![Actions Status](https://github.com/<USER>/<REPO>/workflows/<WORKFLOW NAME>/badge.svg)](https://github.com/<USER>/<REPO>/actions)
+```
+
+- **Snakemake** completed successfully!
+  [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/CI/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
+- **Snakemake** completed **Linting** your workflow and found no issues!
+  [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/Linting/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
+- **black** checked your python code and it is formatted correctly!
+  [![Actions Status](https://github.com/mrvollger/SmkTemplate/workflows/black/badge.svg)](https://github.com/mrvollger/SmkTemplate/actions)
