@@ -131,7 +131,10 @@ footer: "
 
 ## **Why** follow this guide/advice in particular?
 
-- These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
+#### These recommendations are my attempt at a unified collection of standards suggested by the **Snakemake developers**
+
+![](images/star.png)
+(And while this is not a recommendation the creator did star the repo)
 
 # Making a **documented** workflow
 
