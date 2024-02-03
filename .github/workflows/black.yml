@@ -17,9 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@2.0.0
-      - name: Test black Formatting
-        uses: lgeiger/black-action@master
+      - uses: psf/black@stable
         with:
-          args: ". --check"
+          options: ". --check --verbose"

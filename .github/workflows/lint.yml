@@ -17,11 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@2.0.0
       - name: Test linting
-        uses: snakemake/snakemake-github-action@v1.22.0
+        uses: snakemake/snakemake-github-action@v1.23.0
         with:
           directory: .
           snakefile: workflow/Snakefile
-          args: "--lint --cores 1 --configfile .test/config.yaml"
+          args: "--lint"
