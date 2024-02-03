@@ -4,3 +4,4 @@ results/**
 logs/**
 .snakemake/**
 **.code-workspace
+temp/**
