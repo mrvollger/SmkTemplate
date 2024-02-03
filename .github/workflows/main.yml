@@ -13,11 +13,31 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  Formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable
+        with:
+          options: ". --check --verbose"
+
   linting:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Test linting
+        uses: snakemake/snakemake-github-action@v1.23.0
+        with:
+          directory: .
+          snakefile: workflow/Snakefile
+          args: "--lint"
+
+  main:
+    needs: Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test CI
         uses: snakemake/snakemake-github-action@v1.23.0
         with:
           directory: .
