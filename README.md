@@ -10,7 +10,7 @@ This is a Snakemake project template. The `Snakefile` is under `workflow`.
 
 Please start by installing [pixi](https://pixi.sh/latest/) which handles the environment of this Snakemake workflow.
 
-You can then setup of the `pixi` environment by cloning this repository and running:
+You can then install the `pixi` environment by cloning this repository and running:
 
 ```bash
 pixi install
