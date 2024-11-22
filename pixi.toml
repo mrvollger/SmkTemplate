@@ -21,4 +21,3 @@ snakefmt = "*"
 ruff = "*"
 taplo = "*"
 snakemake-executor-plugin-slurm = "*"
-

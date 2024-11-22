@@ -1,10 +1,13 @@
+.vscode
 .vscode/**
+.snakemake
 .snakemake/**
 results/**
 logs/**
-.snakemake/**
 **.code-workspace
 temp/**
+.ruff_cache
 .ruff_cache/**
+.pixi
 .pixi/**
 .DS_Store
