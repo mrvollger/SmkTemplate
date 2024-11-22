@@ -2,14 +2,15 @@
 authors = ["Mitchell Robert Vollger <mrvollger@gmail.com>"]
 channels = ["conda-forge", "bioconda"]
 description = "Add a short description here"
-name = "FIRE"
+name = "SmkTemplate"
 platforms = ["osx-64", "linux-64"]
-version = "0.1.0"
+version = "0.0.1"
 
 [tasks]
 fmt = "ruff format workflow/ && taplo format pixi.toml && snakefmt workflow/"
 test = { cmd = [
   "snakemake",
+  # once established you can add more arguments with your test data here
 ] }
 snakemake = "snakemake"
 
@@ -18,8 +19,6 @@ conda = "*"
 snakemake = "==8.21"
 snakefmt = "*"
 ruff = "*"
-awscli = "2.22"
 taplo = "*"
-
-[pypi-dependencies]
 snakemake-executor-plugin-slurm = "*"
+
