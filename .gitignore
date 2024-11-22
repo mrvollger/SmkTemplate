@@ -5,3 +5,6 @@ logs/**
 .snakemake/**
 **.code-workspace
 temp/**
+.ruff_cache/**
+.pixi/**
+.DS_Store

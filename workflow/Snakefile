@@ -2,9 +2,10 @@ from snakemake.utils import min_version
 
 min_version("8.0")
 
+
 include: "rules/common.smk"
+
 
 rule all:
     input:
         [],
-
