@@ -7,7 +7,7 @@ platforms = ["osx-64", "linux-64"]
 version = "0.0.1"
 
 [tasks]
-fmt = "ruff format workflow/ && taplo format pixi.toml && snakefmt workflow/"
+fmt = "ruff format . && taplo format pixi.toml && snakefmt workflow/"
 test = { cmd = [
   "snakemake",
   # once established you can add more arguments with your test data here
