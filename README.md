@@ -18,7 +18,7 @@ pixi install
 
 ## Usage
 
-I have decided to use `pixi` to handle execution of my Snakemake workflows.
+`pixi` handles the execution of the Snakemake workflows:
 
 ```bash
 pixi run snakemake ...
