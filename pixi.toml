@@ -6,6 +6,7 @@ name = "SmkTemplate"
 platforms = ["osx-64", "linux-64"]
 version = "0.0.1"
 
+
 [tasks]
 fmt = "ruff format . && taplo format pixi.toml && snakefmt workflow/"
 test = { cmd = [
@@ -21,3 +22,7 @@ snakefmt = "*"
 ruff = "*"
 taplo = "*"
 snakemake-executor-plugin-slurm = "*"
+
+
+# Use a shared pixi download location if the ENV variable is set
+detached-environments = "/opt/pixi/envs"
