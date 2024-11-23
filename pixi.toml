@@ -12,7 +12,8 @@ test = { cmd = [
   "snakemake",
   # once established you can add more arguments with your test data here
 ] }
-snakemake = "snakemake"
+snakemake = { cmd = "cd $INIT_CWD && snakemake -s $PIXI_PROJECT_ROOT/workflow/Snakefile" }
+
 
 [dependencies]
 conda = "*"
